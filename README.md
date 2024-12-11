@@ -12,12 +12,22 @@ export：存放导出的文件
 
 # 寄存器
 通用寄存器（32个），系统寄存器（M模式、S模式、U模式）  
+（CSR文件）
 M模式下的系统寄存器：  
 MHartID、MISA、MStatus、MTVec、MEDeleg、MIDeleg、MIP、MIE、MCycle、MInstRet、MCounterEn、MScratch、MEPC、MCause、MTVal、MHPMCounter3 到 MHPMCounter31（已定义）  
 mvendorid、marchid、mimpid、mconfigptr、mtinst、mtval2（未定义）  
-S模式：
+
+S模式：  
 SStatus、SEDeleg、SIDeleg、STVec、SIP、SIE、SCounterEn、SScratch、SEPC、SCause、STVal、SAtp（已定义）  
 senvcfg、scontext（未定义）  
-U模式：
+
+U模式：  
 UStatus、UIE、UTVec、UScratch、UEPC、UCause、UTVal、UIP、FCsr、FFlagsFRM、FCSR、cycle、time、instret（已定义）  
 hpmCounter3 ~ hpmCounter31（未定义）  
+
+CSRField文件：各个CSR的字段 -- 用于配置和监控处理器的运行状态 及其访问权限  
+
+# 指令
+execute文件：通过模式匹配来处理不同的指令  
+
+executeI文件：
