@@ -9,3 +9,15 @@ A扩展：引入原子指令 ， M扩展：引入整数乘法、除法指令
 deps：存放项目依赖的库  
 src/ricv：存放RISC-V实现的具体规范文件  
 export：存放导出的文件  
+
+# 寄存器
+通用寄存器（32个），系统寄存器（M模式、S模式、U模式）  
+M模式下的系统寄存器：  
+MHartID、MISA、MStatus、MTVec、MEDeleg、MIDeleg、MIP、MIE、MCycle、MInstRet、MCounterEn、MScratch、MEPC、MCause、MTVal、MHPMCounter3 到 MHPMCounter31（已定义）  
+mvendorid、marchid、mimpid、mconfigptr、mtinst、mtval2（未定义）  
+S模式：
+SStatus、SEDeleg、SIDeleg、STVec、SIP、SIE、SCounterEn、SScratch、SEPC、SCause、STVal、SAtp（已定义）  
+senvcfg、scontext（未定义）  
+U模式：
+UStatus、UIE、UTVec、UScratch、UEPC、UCause、UTVal、UIP、FCsr、FFlagsFRM、FCSR、cycle、time、instret（已定义）  
+hpmCounter3 ~ hpmCounter31（未定义）  
