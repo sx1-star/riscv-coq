@@ -22,7 +22,7 @@ SStatus、SEDeleg、SIDeleg、STVec、SIP、SIE、SCounterEn、SScratch、SEPC�
 senvcfg、scontext（未定义）  
 
 U模式：  
-UStatus、UIE、UTVec、UScratch、UEPC、UCause、UTVal、UIP、FCsr、FFlagsFRM、FCSR、cycle、time、instret（已定义）  
+UStatus、UIE、UTVec、UScratch、UEPC、UCause、UTVal、UIP、FCsr、FFlags、FRM、FCSR、cycle、time、instret（已定义）  
 hpmCounter3 ~ hpmCounter31（未定义）  
 
 CSRField文件：各个CSR的字段 -- 用于配置和监控处理器的运行状态 及其访问权限 
@@ -30,3 +30,21 @@ CSRField文件：各个CSR的字段 -- 用于配置和监控处理器的运行�
 
 # 指令
 execute文件：通过模式匹配来处理不同的指令  
+
+# U模式下的寄存器
+1.系统寄存器  
+fflags ： 浮点数累积异常  既被定义在CSR类型，又被定义在CSRField类型  
+在risc-v的架构设计中，它是fcsr（浮点数控制和状态寄存器）的一部分，在低五位，用来表示浮点数运算的状态标志（上溢、下溢等），既可以作为独立的寄存器被访问，也可以作为字段被访问  
+frm同理（fcsr[7:5]）表示浮点数舍入模式  
+均为URW（U模式具有读写权限）  
+WARL和RW的区别：前者为写任意、读合法，即可以写入任意值，但会对其进行合法检查，并将其转化为合法值，这样从该寄存器读取到的均为合法值；后者不会进行合法检查  
+2.通用寄存器  
+x0到x31：32个64位通用寄存器，都具有别名，书写汇编时可以直接使用别名  
+每个寄存器都是一个连续的存储单元，没什么特殊的字段划分，每一位都可以用来存储数据  
+x0 -- zero ：寄存器的内容全是0，用作源寄存器或目的寄存器  
+x1 -- ra ：链接寄存器，保存函数返回地址  
+x2 -- sp ：栈指针寄存器，指向栈的地址  
+x3 -- gp ：全局寄存器  
+x4 -- tp ：线程寄存器，保存进程控制块  
+# 指令
+1.PC相对寻址 ：auipc rd， imm  
